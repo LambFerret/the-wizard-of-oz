@@ -50,10 +50,6 @@ public class PlayerMovement : MonoBehaviour
             playerRigidbody.velocity = Vector2.zero;
             playerRigidbody.AddForce(new Vector2(0, jumpForce));
         }
-        //else if(Input.GetKeyUp(KeyCode.Space) && playerRigidbody.velocity.y > 0)
-        //{
-        //    playerRigidbody.velocity = playerRigidbody.velocity * 0.5f;
-        //}
         else if(playerRigidbody.velocity.y > 0)
         {
             playerRigidbody.velocity = playerRigidbody.velocity * 0.5f;
@@ -62,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.collider.CompareTag("Ground"))
+        if (coll.collider.CompareTag("Ground") || coll.collider.CompareTag("Tile"))
         {
             jumpCount = 0;
         }
