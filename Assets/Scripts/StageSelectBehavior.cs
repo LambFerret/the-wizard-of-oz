@@ -56,14 +56,15 @@ public class StageSelectBehavior : MonoBehaviour
 
     private IEnumerator GoLevel(int stage)
     {
+        string sceneName = $"Stage_0{stage}";
         yield return new WaitForSeconds(animationDelay);
         if (isTest)
         {
-            Debug.Log($"GO TO LEVEL {stage}");
+            Debug.Log($"GO TO LEVEL {sceneName}");
         }
         else
         {
-            SceneManager.LoadScene(stage);
+            SceneManager.LoadScene(sceneName);
         }
     }
 
