@@ -136,3 +136,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1756afaac3b7354797fcb9f20a77b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movePosition: {x: 0, y: 0}
+  speed: 2.5
+  jumpForce: 1200
+  jumpCount: 0
+  isDash: 0
+  startToDash: 0
+  timeToDash: 3
+  lastToDash: 0
+  dashToLimit: 5
+  dashForce: 500

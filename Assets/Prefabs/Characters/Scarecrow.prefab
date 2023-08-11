@@ -138,7 +138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movePosition: {x: 0, y: 0}
   speed: 2.5
-  jumpForce: 1000
+  jumpForce: 1200
+  jumpCount: 0
   isStealth: 0
   startToStealth: 0
   timeToStealth: 2.5
