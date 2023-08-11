@@ -1178,6 +1178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 0.5
+  isTest: 1
+  animationDelay: 0.1
 --- !u!1 &1341865044
 GameObject:
   m_ObjectHideFlags: 0

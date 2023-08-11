@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class StageSelectBehavior : MonoBehaviour
 {
     public float scrollSpeed;
+    public bool isTest;
+    public float animationDelay;
 
     private ScrollRect _scrollRect;
     private GameObject _levels;
@@ -47,15 +49,22 @@ public class StageSelectBehavior : MonoBehaviour
 
     public void GoToStage(int stage)
     {
-        _currentStage = stage;
+        _currentStage = stage - 1;
         ScrollToLevel();
         StartCoroutine(GoLevel(stage));
     }
 
-    private static IEnumerator GoLevel(int stage)
+    private IEnumerator GoLevel(int stage)
     {
-        yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene(stage);
+        yield return new WaitForSeconds(animationDelay);
+        if (isTest)
+        {
+            Debug.Log($"GO TO LEVEL {stage}");
+        }
+        else
+        {
+            SceneManager.LoadScene(stage);
+        }
     }
 
     private void ScrollToLevel()
