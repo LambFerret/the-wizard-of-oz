@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 바닦에 닿을 시 캐릭터 변경
 public class ChangeCharacter : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    // 현재 캐릭터 상태
+    public enum characterState : int
     {
-        
+        DOROTHY,
+        SCARECROW,
+        WOODCUTTER,
+        LION
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public characterState currentState = characterState.DOROTHY;
+    public characterState nextState = characterState.SCARECROW;
 }

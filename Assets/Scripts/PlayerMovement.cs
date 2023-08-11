@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static ChangeCharacter;
 
 // 도로시 이동 구현
+// 이단 점프
 public class PlayerMovement : MonoBehaviour
 {
     public Vector2 movePosition;      // 이동 위치
@@ -12,12 +15,14 @@ public class PlayerMovement : MonoBehaviour
     public int jumpCount = 0;      // 누적 점프 횟수
     public int possibleJump = 2;   // 점프 가능 횟수
     public bool isGround = false;
-
+    bool hasChanged;
     private Rigidbody2D playerRigidbody;
+    private ChangeCharacter character;
 
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
+        character = transform.parent.gameObject.GetComponent<ChangeCharacter>();
     }
 
     void Update()
@@ -46,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < possibleJump)
         {
             jumpCount++;
-
+            hasChanged = false;
             playerRigidbody.velocity = Vector2.zero;
             playerRigidbody.AddForce(new Vector2(0, jumpForce));
         }
@@ -61,6 +66,16 @@ public class PlayerMovement : MonoBehaviour
         if (coll.collider.CompareTag("Ground") || coll.collider.CompareTag("Tile"))
         {
             jumpCount = 0;
+            if (character.currentState == character.nextState) return;
+            hasChanged = true;
+            character.transform.GetChild((int)character.currentState).gameObject.SetActive(false);
+            character.transform.GetChild((int)character.nextState).gameObject.SetActive(true);
+
+            character.currentState = character.nextState;
+            if (character.currentState == characterState.LION)
+                character.nextState = characterState.DOROTHY;
+            else
+                character.nextState = character.currentState + 1;
         }
     }
 }
