@@ -57,7 +57,7 @@ MonoBehaviour:
   xMoveLimit: 9
   yMoveLimit: 0
   speed: 2.5
-  jumpForce: 7
+  jumpForce: 7.5
   movePosition: {x: 0, y: 0}
   jumpCount: 0
   possibleJump: 0
