@@ -5,8 +5,13 @@ using UnityEngine;
 public class MoveTile : MonoBehaviour
 {
     public float speed = 2.5f;  // 타일 이동 속도
-    public float maxY = 5.0f;  // Y축 이동 최대 위치
+    public Vector2 startPosition;  // 시작 위치
     public Vector2 moveDirection = Vector2.right;     // 이동 방향
+
+    private void Start()
+    {
+        startPosition = transform.position;
+    }
 
     void Update()
     {
@@ -20,14 +25,14 @@ public class MoveTile : MonoBehaviour
         //}
         //transform.Translate(moveDirection * speed * Time.deltaTime);
 
-        if(transform.position.x >= transform.position.x + 2.0f)
+        if(transform.position.x >= startPosition.x + 1.5f)
         {
             moveDirection = -moveDirection;
         }
-        else if(transform.position.x <= transform.position.x - 2.0f)
+        else if(transform.position.x <= startPosition.x - 1.5f)
         {
             moveDirection = -moveDirection;
         }
-        transform.Translate(moveDirection * speed);
+        transform.Translate(moveDirection * speed * Time.deltaTime);
     }
 }
