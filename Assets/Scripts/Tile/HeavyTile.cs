@@ -5,7 +5,7 @@ using UnityEngine;
 public class HeavyTile : MonoBehaviour
 {
     public float possibleMass = 2.0f;
-    public float speed = 2.5f;
+    public float speed = 3.5f;
 
     private void OnCollisionEnter2D(Collision2D coll)
     {

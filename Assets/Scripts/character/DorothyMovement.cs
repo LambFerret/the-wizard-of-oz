@@ -14,6 +14,7 @@ public class DorothyMovement : IAbility
     public void Action(Character character)
     {
         character.possibleJump = 2;
+        character.rb.mass = 1.0f;
     }
 
     public void Init(Character character)
