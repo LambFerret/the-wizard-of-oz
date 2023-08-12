@@ -12,7 +12,6 @@ public class Character : MonoBehaviour
         WOODCUTTER,
         LION,
     }
-
     public string currentCrashState = "";
 
     public Vector2 lookDirection = new Vector2(1.0f, 0); // 캐릭터 이동 방향
@@ -20,10 +19,15 @@ public class Character : MonoBehaviour
     [Header("Game Objects")] public List<GameObject> characterPrefabs;
     public CharacterState currentState = CharacterState.DOROTHY;
 
-    [Header("Player Movement")] public float speed;
-    public float jumpForce;
+    [Header("Player Movement")]
+    public float xMoveLimit = 9.0f;
+    public float yMoveLimit = 4.5f;
 
-    [Header("Info")] public Vector2 movePosition;
+    public float speed = 2.5f;
+    public float jumpForce = 1400.0f;
+
+    [Header("Info")] 
+    public Vector2 movePosition;
     public int jumpCount;
     public int possibleJump;
     public List<IAbility> Abilities;
@@ -40,7 +44,7 @@ public class Character : MonoBehaviour
     {
         Abilities = new List<IAbility>();
         Abilities.Add(new DorothyMovement());
-        Abilities.Add(new ScarecrowMovement());
+        //Abilities.Add(new ScarecrowMovement());
         // Abilities.Add(new WoodcutterMovement());
         // Abilities.Add(new LionMovement());
         rb = GetComponent<Rigidbody2D>();
@@ -70,7 +74,7 @@ public class Character : MonoBehaviour
         float delta = speed * Time.deltaTime;
         Vector2 movePosition = Vector2.zero;
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) && transform.position.x <= xMoveLimit)
         {
             lookDirection = -lookDirection;
 
@@ -82,7 +86,7 @@ public class Character : MonoBehaviour
                     new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             }
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x >= -xMoveLimit)
         {
             lookDirection = -lookDirection;
 
