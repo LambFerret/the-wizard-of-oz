@@ -1144,7 +1144,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.71111107, y: -0.4000001, z: -10}
+  m_LocalPosition: {x: 5.7632465, y: -0.4000001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2312,20 +2312,20 @@ Transform:
   - {fileID: 425786591}
   - {fileID: 1798156387}
   - {fileID: 832200972}
-  - {fileID: 1463772661}
   - {fileID: 613078712}
-  - {fileID: 263895777}
+  - {fileID: 1463772661}
   - {fileID: 233661910}
-  - {fileID: 680225188}
+  - {fileID: 263895777}
   - {fileID: 1160627927}
-  - {fileID: 1858966276}
+  - {fileID: 680225188}
   - {fileID: 1757870076}
+  - {fileID: 1858966276}
   - {fileID: 1415322833}
   - {fileID: 237698464}
   - {fileID: 1987439689}
   - {fileID: 1943662584}
-  - {fileID: 1542447894}
   - {fileID: 1361753562}
+  - {fileID: 1542447894}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5065,6 +5065,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7752752621891371808, guid: 4e100ec41b15f47af895cc6ed6223acd, type: 3}
+      propertyPath: xMoveLimit
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 7752752621891371809, guid: 4e100ec41b15f47af895cc6ed6223acd, type: 3}
       propertyPath: m_Name
       value: Character
