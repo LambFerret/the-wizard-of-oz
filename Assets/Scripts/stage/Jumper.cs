@@ -6,7 +6,7 @@ using UnityEngine;
 public class Jumper : MonoBehaviour
 {
     private Rigidbody2D _rb;
-    public float jumpForce = 15.0f;
+    public float jumpForce = 9.0f;
 
     void Start()
     {

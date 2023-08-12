@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6734e61db55d02d46a853f5863f8ed8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentCrashState: 
   lookDirection: {x: 1, y: 0}
   characterPrefabs:
   - {fileID: 5092795537379812763, guid: 4d9acb2379bb0364db33f6b47626aad5, type: 3}
@@ -58,10 +57,12 @@ MonoBehaviour:
   xMoveLimit: 9
   yMoveLimit: 0
   speed: 2.5
-  jumpForce: 5
+  jumpForce: 7.5
   movePosition: {x: 0, y: 0}
   jumpCount: 0
   possibleJump: 0
+  timeToStealth: 5
+  startToStealth: 0
   rb: {fileID: 0}
   col: {fileID: 0}
 --- !u!70 &7752752621891371813
