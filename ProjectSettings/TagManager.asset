@@ -13,16 +13,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Platform
+  - Camera
   - Water
   - UI
   - Character
   - Enemy
   - Obstacle
-  - Player
-  - 
-  - 
-  - 
+  - Ground
   - 
   - 
   - 
