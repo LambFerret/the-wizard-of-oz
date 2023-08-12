@@ -370,17 +370,17 @@ MonoBehaviour:
   lookDirection: {x: 1, y: 0}
   characterPrefabs:
   - {fileID: 5092795537379812763, guid: 4d9acb2379bb0364db33f6b47626aad5, type: 3}
-  - {fileID: 2006598182994360033, guid: dfeb43489a65f2c4d8d00246e36d8006, type: 3}
   - {fileID: 8582953647930960364, guid: fb8acb0a09cff6942844e98ca6b61b32, type: 3}
   - {fileID: 8333104285547981070, guid: 9529cef0fcf19a94f82e4dec5d583190, type: 3}
+  - {fileID: 2006598182994360033, guid: dfeb43489a65f2c4d8d00246e36d8006, type: 3}
   currentState: 0
   speed: 2.5
   jumpForce: 1200
   movePosition: {x: 0, y: 0}
   jumpCount: 0
   possibleJump: 1
-  _rb: {fileID: 0}
-  _col: {fileID: 0}
+  rb: {fileID: 0}
+  col: {fileID: 0}
 --- !u!4 &1213083700
 Transform:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class ScarecrowMovement : IAbility
     public void Action(Character character)
     {
         // 질량 0.5로 변경 -> 무거운 타일 이동 불가
-        character._rb.mass = 0.5f;
+        character.rb.mass = 0.5f;
 
         // 은신 -> Enemy와 충돌 피하기
         startTostealth = Time.time;
@@ -31,6 +31,6 @@ public class ScarecrowMovement : IAbility
 
     public void Init(Character character)
     {
-        character._rb.mass = 1.0f;
+        character.rb.mass = 1.0f;
     }
 }

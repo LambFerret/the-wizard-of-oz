@@ -31,12 +31,12 @@ public class LionMovement : IAbility
         {
             startToDash = Time.time;
 
-            character._rb.velocity = Vector2.zero;
-            character._rb.AddForce(character.lookDirection * dashSpeed);
+            character.rb.velocity = Vector2.zero;
+            character.rb.AddForce(character.lookDirection * dashSpeed);
         }
         else if (startToDash + timeToDash < Time.time)
         {
-            character._rb.AddForce(new Vector2(0, 0));
+            character.rb.AddForce(new Vector2(0, 0));
             lastToDash = Time.time;
         }
     }

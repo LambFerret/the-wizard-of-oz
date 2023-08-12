@@ -1,5 +1,4 @@
 using character;
-using UnityEngine;
 
 
 public class DorothyMovement : IAbility
@@ -14,7 +13,6 @@ public class DorothyMovement : IAbility
 
     public void Action(Character character)
     {
-        Debug.Log("Applied Dorothy Movement");
         character.possibleJump = 2;
     }
 
