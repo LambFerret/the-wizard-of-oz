@@ -354,7 +354,7 @@ Transform:
   - {fileID: 1852691661}
   - {fileID: 1621848810}
   m_Father: {fileID: 874683257}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &48776239
 GameObject:
@@ -1165,7 +1165,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7084904, y: -0.4000001, z: -10}
+  m_LocalPosition: {x: -0.71111107, y: -0.4000001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1623,8 +1623,8 @@ Transform:
   - {fileID: 528569819}
   - {fileID: 1428237276}
   - {fileID: 2138826907}
-  - {fileID: 337278640}
   - {fileID: 46897449}
+  - {fileID: 337278640}
   - {fileID: 185875587}
   - {fileID: 1466052313}
   - {fileID: 1673386581}
@@ -2089,7 +2089,7 @@ MonoBehaviour:
   xMoveLimit: 9
   yMoveLimit: 0
   speed: 2.5
-  jumpForce: 1700
+  jumpForce: 5
   movePosition: {x: 0, y: 0}
   jumpCount: 0
   possibleJump: 0
@@ -2125,7 +2125,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

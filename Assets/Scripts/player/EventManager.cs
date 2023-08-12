@@ -38,5 +38,11 @@ namespace player
         {
             OnGetCoin?.Invoke(type);
         }
+
+        public event Action OnGetFilm;
+        public void GetFilm()
+        {
+            OnGetFilm?.Invoke();
+        }
     }
 }
