@@ -16,7 +16,6 @@ namespace scene
 
         public void SaveData(PlayerData data)
         {
-            throw new NotImplementedException();
         }
     }
 }

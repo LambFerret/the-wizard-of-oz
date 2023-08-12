@@ -1,4 +1,6 @@
+using System;
 using player;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace stage
@@ -7,7 +9,6 @@ namespace stage
     {
         public enum CoinType
         {
-            Coin,
             Brain,
             Heart,
             Brave
@@ -16,6 +17,13 @@ namespace stage
         public string id;
         public CoinType coinType;
         public bool isCollected;
+        public Sprite[] sprites;
+
+        private void Start()
+        {
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = sprites[(int) coinType];
+        }
 
         [ContextMenu("Generate ID")]
         private void GenerateId()

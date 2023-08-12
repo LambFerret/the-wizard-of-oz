@@ -50,7 +50,14 @@ namespace scene
         {
             if (chara == whoAreYou)
             {
-                SetInjured(true);
+                if (!_isInjured)
+                {
+                    SetInjured(true);
+                }
+                else
+                {
+                    _savedHealth = 0;
+                }
             }
         }
 

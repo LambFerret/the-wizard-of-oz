@@ -34,14 +34,25 @@ namespace scene
         {
             if (whoIsAlive == chara) return;
             whoIsAlive = chara;
+
             for (int i = 0; i < friends.Length; i++)
             {
                 var friend = friends[i];
-                bool isActive = chara == friend.gameObject.GetComponent<CharacterSingleUI>().whoAreYou;
-                float targetX = isActive ? _originalXPositions + xMoveValue : _originalXPositions;
-                friend.transform.DOMoveX(targetX, moveDuration).SetEase(Ease.InOutQuad); // Move the object using DOTween
+                var characterSingleUI = friend.gameObject.GetComponent<CharacterSingleUI>();
+
+                if (chara == characterSingleUI.whoAreYou)
+                {
+                    float targetX = _originalXPositions + xMoveValue;
+                    friend.transform.DOMoveX(targetX, moveDuration).SetEase(Ease.InOutQuad);
+                }
+                else
+                {
+                    float targetX = _originalXPositions;
+                    friend.transform.DOMoveX(targetX, moveDuration).SetEase(Ease.InOutQuad);
+                }
             }
         }
+
 
         public void LoadData(PlayerData data)
         {

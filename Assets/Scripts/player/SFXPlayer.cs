@@ -26,16 +26,22 @@ namespace player
             _audioSource = gameObject.AddComponent<AudioSource>();
         }
 
-        public void Play(string clipName, float volume = 1.0f)
+        public AudioSource Play(string clipName, float volume = 1.0f)
         {
+            AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.volume = volume;
+
             foreach (var clip in clips)
             {
                 if (clip.name == clipName)
                 {
-                    _audioSource.PlayOneShot(clip, volume);
-                    break;
+                    audioSource.clip = clip;
+                    audioSource.Play();
+                    return audioSource;
                 }
             }
+
+            return null; // 클립을 찾지 못한 경우
         }
     }
 }

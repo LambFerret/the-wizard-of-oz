@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using character;
 using player;
@@ -39,6 +40,8 @@ public class Character : MonoBehaviour, IDataPersistence
     private Character _character;
     private List<GameObject> _characterPrefabs;
     private List<Animator> _animator;
+    private Collider2D _enemyCollider;
+    private Collider2D _platformCollider;
 
 
     private void Awake()
@@ -54,6 +57,7 @@ public class Character : MonoBehaviour, IDataPersistence
             a.SetActive(false);
             _animator.Add(a.transform.GetChild(0).GetComponent<Animator>());
         }
+        // _platformCollider = transform.Find("PlatformCollider").GetComponent<Collider2D>();
     }
 
     private int _friendNumber;
@@ -81,14 +85,17 @@ public class Character : MonoBehaviour, IDataPersistence
         {
             Abilities.Add(new ScarecrowMovement());
         }
+
         if (_friendNumber >= 3)
         {
             Abilities.Add(new WoodcutterMovement());
         }
+
         if (_friendNumber == 4)
         {
             Abilities.Add(new LionMovement());
         }
+
         Change();
     }
 
@@ -206,9 +213,9 @@ public class Character : MonoBehaviour, IDataPersistence
         Change(currentState);
     }
 
-    private void OnCollisionEnter2D(Collision2D coll)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (coll.collider.CompareTag("Ground") || coll.collider.CompareTag("Tile"))
+        if (other.CompareTag("Ground") || other.CompareTag("Tile"))
         {
             foreach (var a in _animator)
             {

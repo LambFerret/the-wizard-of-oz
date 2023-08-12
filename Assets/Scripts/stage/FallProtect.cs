@@ -1,3 +1,4 @@
+using player;
 using UnityEngine;
 
 namespace stage
@@ -16,6 +17,7 @@ namespace stage
             if (other.CompareTag("Player"))
             {
                 other.transform.position = arrival.transform.position;
+                EventManager.Instance.HitByEnemy(other.gameObject.GetComponent<Character>().currentState);
             }
         }
     }

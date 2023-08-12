@@ -250,7 +250,7 @@ MonoBehaviour:
   - {fileID: 471041009806300542}
   - {fileID: 471041011363611539}
   whoIsAlive: 0
-  xMoveValue: 1
+  xMoveValue: 50
   moveDuration: 0.5
 --- !u!114 &5573672115755015956
 MonoBehaviour:

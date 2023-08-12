@@ -24,19 +24,23 @@ namespace scene
             sentence.text = "";
         }
 
+        private AudioSource _typewriter;
+        private AudioSource _bgm;
         private void Start()
         {
+            _typewriter = SFXPlayer.Instance.Play("typewriter", 0.5F);
             StartCoroutine(ShowText());
         }
 
         private IEnumerator ShowText()
         {
+            _typewriter.Play();
             for (int i = 0; i < _fullText.Length + 1; i++)
             {
                 sentence.text = _fullText.Substring(0, i);
                 yield return new WaitForSeconds(textSpeed);
             }
-
+            _typewriter.Stop();
             _textComplete = true;
         }
 

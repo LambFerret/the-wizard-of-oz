@@ -21,26 +21,30 @@ namespace player
             {
                 Destroy(gameObject);
             }
-
         }
+
         private void Start()
         {
             _audioSource = gameObject.AddComponent<AudioSource>();
             _audioSource.loop = true;
             SceneManager.sceneLoaded += OnSceneLoaded;
-            Play("bgm");
+            Play("start");
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             _audioSource.Stop();
-            if (scene.name == "StageSelect")
+            if (scene.name is "Stage_00" or "Stage_01")
             {
-                Play("cantate");
+                Play("yellow");
             }
-            else
+            else if (scene.name is "Stage_02" or "Stage_03")
             {
-                Play("jeux");
+                Play("forest");
+            }
+            else if (scene.name is "Stage_04")
+            {
+                Play("wicked1");
             }
         }
 
