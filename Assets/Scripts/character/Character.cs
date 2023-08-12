@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using character;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -15,20 +17,26 @@ public class Character : MonoBehaviour
         WOODCUTTER
     }
 
+    public string currentCrashState = "";
+
+    public Vector2 lookDirection = new Vector2(1.0f, 0);    // 캐릭터 이동 방향
+
     [Header("Game Objects")]
     public List<GameObject> characterPrefabs;
     public CharacterState currentState = CharacterState.DOROTHY;
 
     [Header("Player Movement")]
-    public float speed; // ??? ???
-    public float jumpForce; // ???? ???
+    public float speed;
+    public float jumpForce;
 
     [Header("Info")]
-    public Vector2 movePosition; // ??? ???
-    public int jumpCount; // ???? ???? ???
-    public int possibleJump; // ???? ???? ???
+    public Vector2 movePosition;
+    public int jumpCount;
+    public int possibleJump;
 
-    private Rigidbody2D _rb;
+    public Rigidbody2D _rb;
+    public Collider2D _col;
+
     private Character _character;
     private List<IAbility> _abilities;
     public IAbility Ability;
@@ -39,9 +47,9 @@ public class Character : MonoBehaviour
     {
         _abilities = new List<IAbility>();
         _abilities.Add(new DorothyMovement());
-        _abilities.Add(new LionMovement());
-        _abilities.Add(new ScarecrowMovement());
-        _abilities.Add(new WoodcutterMovement());
+        //_abilities.Add(new LionMovement());
+        //_abilities.Add(new ScarecrowMovement());
+        //_abilities.Add(new WoodcutterMovement());
         _rb = GetComponent<Rigidbody2D>();
         _characterPrefabs = new List<GameObject>();
         foreach (var p in characterPrefabs)
@@ -61,6 +69,7 @@ public class Character : MonoBehaviour
     {
         Move();
         Jump();
+        OnCrashCheck();
     }
 
     public void Move()
@@ -68,11 +77,15 @@ public class Character : MonoBehaviour
         float delta = speed * Time.deltaTime;
         if (Input.GetKey(KeyCode.RightArrow))
         {
+            lookDirection = -lookDirection;
+
             movePosition = Vector2.right * delta;
             transform.Translate(movePosition);
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
+            lookDirection = -lookDirection;
+
             movePosition = Vector2.left * delta;
             transform.Translate(movePosition);
         }
@@ -127,11 +140,43 @@ public class Character : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D coll)
     {
-        if(coll.collider.CompareTag("Ground") || coll.collider.CompareTag("Tile"))
+        if (coll.collider.CompareTag("Ground") || coll.collider.CompareTag("Tile"))
         {
             jumpCount = 0;
             Change();
         }
     }
 
+    // 캐릭터 스킬에 따른 특정 오브젝트와의 충돌 상쇄 처리
+    void OnCrashCheck()
+    {    
+        switch(currentState)
+        {
+            case CharacterState.DOROTHY:
+                if (currentCrashState == "Enemy")
+                    Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Character"), LayerMask.NameToLayer("Enemy"), false);
+                else
+                    Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Character"), LayerMask.NameToLayer("Obstacle"), false);
+                break;
+            case CharacterState.SCARECROW:   // Enemy와 충돌하지 않음
+                currentCrashState = "Enemy";
+                Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Character"), LayerMask.NameToLayer("Obstacle"), false);
+                Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Character"), LayerMask.NameToLayer("Enemy"), true);
+                break;
+            case CharacterState.WOODCUTTER:
+                currentCrashState = "Obstacle";   // 장애물 및 용암과 충돌하지 않음
+                Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Character"), LayerMask.NameToLayer("Enemy"), false);
+                Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Character"), LayerMask.NameToLayer("Obstacle"), true);
+                break;
+            case CharacterState.LION:
+                if(currentCrashState == "Enemy")
+                    Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Character"), LayerMask.NameToLayer("Enemy"), false);
+                else
+                    Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Character"), LayerMask.NameToLayer("Obstacle"), false);
+                break;
+            default:
+                break;
+        }
+    }
 }
+    
