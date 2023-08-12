@@ -1028,7 +1028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textSpeed: 0.1
-  fadeSpeed: 1
+  fadeSpeed: 5
   sentence: {fileID: 1327379861}
   dialogueGameObject: {fileID: 495228356}
 --- !u!1 &1519964463

@@ -18,11 +18,11 @@ namespace player
             Instance = this;
         }
 
-        public event Action OnHitByEnemy;
+        public event Action<Character.CharacterState> OnHitByEnemy;
 
-        public void HitByEnemy()
+        public void HitByEnemy(Character.CharacterState chara)
         {
-            OnHitByEnemy?.Invoke();
+            OnHitByEnemy?.Invoke(chara);
         }
 
         public event Action<Character.CharacterState> OnChangeCharacter;

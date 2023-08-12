@@ -50,7 +50,6 @@ namespace scene
             {
                 if (b) a++;
             }
-
             _friendNumber = a + 1;
         }
 

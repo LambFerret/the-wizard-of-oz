@@ -1,35 +1,22 @@
 using System;
-using System.Collections;
 using player;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace scene
 {
-    public class StageManager : MonoBehaviour
+    public class StageManager : MonoBehaviour, IDataPersistence
     {
-        public GameObject[] collectables;
-        private bool _isThisStageCleared;
-
-        private void Update()
+        public void LoadData(PlayerData data)
         {
-            foreach (var collectable in collectables)
+            for (int i = 0; i < data.PlayerHealth.Length; i++)
             {
-                if (collectable.activeSelf) return;
-            } // if all collectables are collected
-
-            if (_isThisStageCleared) return;
-            _isThisStageCleared = true;
-            StartCoroutine(GoToNext());
+                data.PlayerHealth[i] = 2;
+            }
         }
 
-        private IEnumerator GoToNext()
+        public void SaveData(PlayerData data)
         {
-            // Debug.Log("YOU Beat this stage! " + currentStage);
-            yield return new WaitForSeconds(4f);
-            // SceneManager.LoadScene("Stage_0" + (currentStage + 1));
+            throw new NotImplementedException();
         }
-
-
     }
 }

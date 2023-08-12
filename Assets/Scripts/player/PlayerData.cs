@@ -9,7 +9,7 @@ namespace player
         public bool[] HasFilm;
         public bool[] IsClear;
         public SerializableDictionary<string, bool> IsCoinCollected;
-        public int PlayerHealth;
+        public int[] PlayerHealth;
 
 
         public PlayerData()
@@ -17,7 +17,11 @@ namespace player
             IsClear = new bool[StageNumber];
             HasFilm = new bool[StageNumber];
             IsCoinCollected = new SerializableDictionary<string, bool>();
-            PlayerHealth = 2;
+            PlayerHealth = new int[4];
+            for (int i = 0; i < PlayerHealth.Length; i++)
+            {
+                PlayerHealth[i] = 2;
+            }
         }
     }
 }

@@ -3,7 +3,7 @@ using character;
 using player;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour, IDataPersistence
 {
     // 현재 캐릭터 상태
     public enum CharacterState
@@ -13,6 +13,7 @@ public class Character : MonoBehaviour
         WOODCUTTER,
         LION,
     }
+
     public string currentCrashState = "";
 
     public Vector2 lookDirection = new Vector2(1.0f, 0); // 캐릭터 이동 방향
@@ -20,15 +21,13 @@ public class Character : MonoBehaviour
     [Header("Game Objects")] public List<GameObject> characterPrefabs;
     public CharacterState currentState = CharacterState.DOROTHY;
 
-    [Header("Player Movement")]
-    public float xMoveLimit = 9.0f;
+    [Header("Player Movement")] public float xMoveLimit = 9.0f;
     public float yMoveLimit = 4.5f;
 
     public float speed = 2.5f;
     public float jumpForce = 1400.0f;
 
-    [Header("Info")] 
-    public Vector2 movePosition;
+    [Header("Info")] public Vector2 movePosition;
     public int jumpCount;
     public int possibleJump;
     public List<IAbility> Abilities;
@@ -39,15 +38,13 @@ public class Character : MonoBehaviour
 
     private Character _character;
     private List<GameObject> _characterPrefabs;
+    private List<Animator> _animator;
 
 
     private void Awake()
     {
-        Abilities = new List<IAbility>();
-        Abilities.Add(new DorothyMovement());
-        //Abilities.Add(new ScarecrowMovement());
-        // Abilities.Add(new WoodcutterMovement());
-        // Abilities.Add(new LionMovement());
+        _animator = new List<Animator>();
+
         rb = GetComponent<Rigidbody2D>();
         _characterPrefabs = new List<GameObject>();
         foreach (var p in characterPrefabs)
@@ -55,11 +52,43 @@ public class Character : MonoBehaviour
             var a = Instantiate(p, transform);
             _characterPrefabs.Add(a);
             a.SetActive(false);
+            _animator.Add(a.transform.GetChild(0).GetComponent<Animator>());
         }
+    }
+
+    private int _friendNumber;
+
+    public void LoadData(PlayerData data)
+    {
+        int a = 0;
+        foreach (var b in data.IsClear)
+        {
+            if (b) a++;
+        }
+
+        _friendNumber = a + 1;
+    }
+
+    public void SaveData(PlayerData data)
+    {
     }
 
     private void Start()
     {
+        Abilities = new List<IAbility>();
+        Abilities.Add(new DorothyMovement());
+        if (_friendNumber >= 2)
+        {
+            Abilities.Add(new ScarecrowMovement());
+        }
+        if (_friendNumber >= 3)
+        {
+            Abilities.Add(new WoodcutterMovement());
+        }
+        if (_friendNumber == 4)
+        {
+            Abilities.Add(new LionMovement());
+        }
         Change();
     }
 
@@ -70,6 +99,7 @@ public class Character : MonoBehaviour
         OnCrashCheck();
     }
 
+
     public void Move()
     {
         float delta = speed * Time.deltaTime;
@@ -78,6 +108,10 @@ public class Character : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow) && transform.position.x <= xMoveLimit)
         {
             lookDirection = -lookDirection;
+            foreach (var a in _animator)
+            {
+                a.SetBool("IsMoving", true);
+            }
 
             movePosition = Vector2.right * delta;
             transform.Translate(movePosition);
@@ -90,6 +124,10 @@ public class Character : MonoBehaviour
         else if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x >= -xMoveLimit)
         {
             lookDirection = -lookDirection;
+            foreach (var a in _animator)
+            {
+                a.SetBool("IsMoving", true);
+            }
 
             movePosition = Vector2.left * delta;
             transform.Translate(movePosition);
@@ -99,12 +137,22 @@ public class Character : MonoBehaviour
                     new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             }
         }
+
+        foreach (var a in _animator)
+        {
+            a.SetBool("IsMoving", false);
+        }
     }
 
     public void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < possibleJump)
         {
+            foreach (var a in _animator)
+            {
+                a.SetBool("IsJumping", true);
+            }
+
             jumpCount++;
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
@@ -162,6 +210,11 @@ public class Character : MonoBehaviour
     {
         if (coll.collider.CompareTag("Ground") || coll.collider.CompareTag("Tile"))
         {
+            foreach (var a in _animator)
+            {
+                a.SetBool("IsJumping", false);
+            }
+
             jumpCount = 0;
             Change();
         }
