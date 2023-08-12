@@ -26,19 +26,18 @@ public class LionMovement : IAbility
     // 대쉬 스킬
     public void Action(Character character)
     {
-        // 
-        if (startToDash + timeToDash > Time.time)
-        {
-            startToDash = Time.time;
+        //if (startToDash + timeToDash > Time.time)
+        //{
+        //    startToDash = Time.time;
 
-            character.rb.velocity = Vector2.zero;
-            character.rb.AddForce(character.lookDirection * dashSpeed);
-        }
-        else if (startToDash + timeToDash < Time.time)
-        {
-            character.rb.AddForce(new Vector2(0, 0));
-            lastToDash = Time.time;
-        }
+        //    character.rb.velocity = Vector2.zero;
+        //    character.rb.AddForce(character.lookDirection * dashSpeed);
+        //}
+        //else if (startToDash + timeToDash < Time.time)
+        //{
+        //    character.rb.AddForce(new Vector2(0, 0));
+        //    lastToDash = Time.time;
+        //}
     }
 
     public void Init(Character character)

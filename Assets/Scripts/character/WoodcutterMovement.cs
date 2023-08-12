@@ -20,8 +20,6 @@ public class WoodcutterMovement : IAbility
     {
         // 질량 2.0로 변경 -> 무거운 타일 이동 가능
         character.rb.mass = 2.0f;
-
-        // 장애물과 충돌 피하기
     }
 
     public void Init(Character character)

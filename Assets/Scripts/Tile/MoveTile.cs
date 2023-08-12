@@ -15,16 +15,6 @@ public class MoveTile : MonoBehaviour
 
     void Update()
     {
-        //if (transform.position.y >= maxY)
-        //{
-        //    moveDirection = -moveDirection;
-        //}
-        //else if(transform.position.y <= -maxY)
-        //{
-        //    moveDirection = -moveDirection;
-        //}
-        //transform.Translate(moveDirection * speed * Time.deltaTime);
-
         if(transform.position.x >= startPosition.x + 1.5f)
         {
             moveDirection = -moveDirection;
