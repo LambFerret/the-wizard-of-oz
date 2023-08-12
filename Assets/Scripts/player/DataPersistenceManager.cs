@@ -33,7 +33,7 @@ namespace player
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Z)) SceneManager.LoadScene(0);
+            if (Input.GetKeyDown(KeyCode.Z)) SceneManager.LoadScene("GameStart");
         }
 
         private void OnEnable()
