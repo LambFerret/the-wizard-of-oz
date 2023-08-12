@@ -27,9 +27,9 @@ public class LightTile : MonoBehaviour
         });
     }
 
-    private void OnCollisionEnter2D(Collision2D coll)
+    private void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.collider.CompareTag("Player") && coll.rigidbody.mass > 0.5)
+        if (coll.CompareTag("Player") && coll.GetComponent<Rigidbody2D>().mass >  0.5)
         {
             // 허수아비가 아닌 캐릭터가 밟을 시 오브젝트 파괴
             FadeOut();
