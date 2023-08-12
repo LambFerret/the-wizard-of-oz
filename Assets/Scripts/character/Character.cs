@@ -75,12 +75,18 @@ public class Character : MonoBehaviour
     public void Move()
     {
         float delta = speed * Time.deltaTime;
+        Vector2 movePosition = Vector2.zero;
+
         if (Input.GetKey(KeyCode.RightArrow))
         {
             lookDirection = -lookDirection;
 
             movePosition = Vector2.right * delta;
             transform.Translate(movePosition);
+            if (transform.localScale.x < 0)
+            {
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            }
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -88,8 +94,13 @@ public class Character : MonoBehaviour
 
             movePosition = Vector2.left * delta;
             transform.Translate(movePosition);
+            if (transform.localScale.x > 0)
+            {
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            }
         }
     }
+
 
     public void Jump()
     {

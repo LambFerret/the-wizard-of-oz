@@ -17,18 +17,18 @@ namespace player
             Instance = this;
         }
 
-        public event Action<int> OnScoreChanged;
+        public event Action OnHitByEnemy;
 
-        public void ScoreChanged(int value)
+        public void HitByEnemy()
         {
-            OnScoreChanged?.Invoke(value);
+            OnHitByEnemy?.Invoke();
         }
 
-        public event Action OnClear;
+        public event Action OnGetCoin;
 
-        public void Clear()
+        public void GetCoin()
         {
-            OnClear?.Invoke();
+            OnGetCoin?.Invoke();
         }
     }
 }
