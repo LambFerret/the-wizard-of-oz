@@ -859,8 +859,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 90, y: 0}
-  m_SizeDelta: {x: 449.3762, y: 50}
+  m_AnchoredPosition: {x: 127.2, y: 0}
+  m_SizeDelta: {x: 482.4021, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1327379861
 MonoBehaviour:
@@ -882,8 +882,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\" \uB0B4\uAC00 \uBE59\uB2E4\uB9AC \uD56B\uBC14\uC9C0\uB85C \uBCF4\uC774\uB0D0?
-    \""
+  m_text: '"Toto, I''ve a feeling we''re not in Kansas anymore." '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 46829e859830b4075be8c62a73ac2243, type: 2}
   m_sharedMaterial: {fileID: -2450494101314799107, guid: 46829e859830b4075be8c62a73ac2243, type: 2}
@@ -922,7 +921,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 20.11
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -1077,7 +1076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a9aaf6983ca493f98f7a763142bfbd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textSpeed: 0.1
+  textSpeed: 0.04
   fadeSpeed: 5
   sentence: {fileID: 1327379861}
   dialogueGameObject: {fileID: 495228356}

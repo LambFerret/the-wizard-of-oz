@@ -157,6 +157,7 @@ public class Character : MonoBehaviour, IDataPersistence
     {
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < possibleJump)
         {
+            rb.velocity = Vector2.zero;
             foreach (var a in _animator)
             {
                 a.SetBool("IsJumping", true);

@@ -69,11 +69,17 @@ namespace scene
             {
                 _isGameOver = true;
                 Debug.Log("you are dead ");
-                SceneManager.LoadScene("StageSelectScene");
+                SFXPlayer.Instance.Play("dead");
+                ReloadScene();
             }
         }
+        private static void ReloadScene()
+        {
+            Scene currentScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentScene.buildIndex);
+        }
 
-        public void SetInjured(bool injured)
+        private void SetInjured(bool injured)
         {
             _isInjured = injured;
             _healthy.gameObject.SetActive(!injured);
