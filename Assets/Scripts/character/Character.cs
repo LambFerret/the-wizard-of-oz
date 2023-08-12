@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using character;
+using player;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -105,17 +106,13 @@ public class Character : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < possibleJump)
         {
             jumpCount++;
-            rb.velocity = Vector2.zero;
-            rb.AddForce(new Vector2(0, jumpForce));
-        }
-        else if (rb.velocity.y > 0)
-        {
-            rb.velocity *= 0.5f;
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
     }
 
     public void Change(CharacterState state)
     {
+        EventManager.Instance.ChangeCharacter(state);
         for (int i = 0; i < Abilities.Count; i++)
         {
             if (Abilities[i].Name == state.ToString())

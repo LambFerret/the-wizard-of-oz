@@ -7,6 +7,7 @@ namespace stage
     {
         public enum CoinType
         {
+            Coin,
             Brain,
             Heart,
             Brave
@@ -20,6 +21,16 @@ namespace stage
         private void GenerateId()
         {
             id = coinType + System.Guid.NewGuid().ToString();
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                isCollected = true;
+                gameObject.SetActive(false);
+                EventManager.Instance.GetCoin(coinType);
+            }
         }
 
         public void LoadData(PlayerData data)

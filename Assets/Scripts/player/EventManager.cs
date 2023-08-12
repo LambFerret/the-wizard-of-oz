@@ -1,4 +1,5 @@
 using System;
+using stage;
 using UnityEngine;
 
 namespace player
@@ -24,11 +25,18 @@ namespace player
             OnHitByEnemy?.Invoke();
         }
 
-        public event Action OnGetCoin;
+        public event Action<Character.CharacterState> OnChangeCharacter;
 
-        public void GetCoin()
+        public void ChangeCharacter(Character.CharacterState chara)
         {
-            OnGetCoin?.Invoke();
+            OnChangeCharacter?.Invoke(chara);
+        }
+
+        public event Action<Coin.CoinType> OnGetCoin;
+
+        public void GetCoin(Coin.CoinType type)
+        {
+            OnGetCoin?.Invoke(type);
         }
     }
 }
