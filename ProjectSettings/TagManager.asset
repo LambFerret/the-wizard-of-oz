@@ -9,6 +9,8 @@ TagManager:
   - Coin
   - Enemy
   - Obstacle
+  - FxTemporaire
+  - Fail
   layers:
   - Default
   - TransparentFX
